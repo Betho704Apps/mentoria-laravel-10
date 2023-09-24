@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProdutosController;
 use Illuminate\Support\Facades\Route;
+use PhpParser\Node\Stmt\Echo_;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +19,16 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::prefix('produtos')->group(function (){
-    Route::get('/', [ProdutosController::class, 'index'])->name('produto.index');
-    Route::delete('/delete', [ProdutosController::class, 'delete'])->name('produto.index');
-   
-
+Route::get('/teste', function () {
+    return view('teste');
 });
 
+Route::prefix('produtos')->group(function () {
+    Route::get('/', [ProdutosController::class, 'index'])->name('produto.index');
+    Route::delete('/delete', [ProdutosController::class, 'delete'])->name('produto.delete');
+    Route::get('/cadastrarProduto',[ProdutosController::class, 'cadastrarProduto'])->name('cadastrar.produtos');
+    Route::post('/cadastrarProduto',[ProdutosController::class, 'cadastrarProduto'])->name('cadastrar.produtos');
 
 
+
+});

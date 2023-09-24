@@ -4,17 +4,24 @@ namespace Database\Seeders;
 
 use App\Models\Produto;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
+use Illuminate\Database\Seeder;use Faker\Factory as Faker;
 
 class ProdutosSeeder extends Seeder
 {
-  
+
     public function run(): void
     {
-        Produto::create([
-            'nome' => 'Vitor Padovim',
-            'valor' => '20.00'
+        $faker = Faker::create();
 
-        ]);
+        for ($i=0; $i < 5; $i++) { 
+
+            Produto::create([
+                'nome' => $faker->name,
+                'valor' => $faker->randomNumber(2)
+
+            ]);
+        }
+            
+
     }
 }
