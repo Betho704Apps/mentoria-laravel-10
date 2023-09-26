@@ -49,6 +49,24 @@ function formatarComoMoedaBrasileira(input) {
 }
 
 // Uso:
-document.getElementById('formatReal').addEventListener('input', function() {
-    formatarComoMoedaBrasileira(this);
-});
+if(document.getElementById('formatReal') || document.getElementById('valorEditar')){    
+    if(document.getElementById('formatReal').value.trim() != ''){
+        var campo  = document.getElementById('formatReal');
+        if (campo) {
+            formatarComoMoedaBrasileira(campo);
+        };
+    };
+            
+    document.getElementById('formatReal').addEventListener('input', function() {
+        formatarComoMoedaBrasileira(this);
+    });
+}
+
+
+
+
+
+// var valorEdit = document.getElementById('valorEditar');
+// console.log(valorEdit);
+
+

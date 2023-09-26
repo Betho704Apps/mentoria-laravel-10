@@ -6,6 +6,17 @@ use App\Models\Produto;
 use GuzzleHttp\Psr7\Message;
 use Illuminate\Http\Request;
 
+function formatarComoMoedaAmericana($valor) {
+    // Remover todos os caracteres não numéricos.
+    $valorLimpo = preg_replace('/[^0-9]/', '', $valor);
+
+    // Converter o valor limpo em float
+    $valorFloat = floatval($valorLimpo) / 100;
+
+    // Formatá-lo para o padrão americano.
+    return number_format($valorFloat, 2, '.', ',');
+}
+
 class ProdutosController extends Controller
 {
 
@@ -31,18 +42,11 @@ class ProdutosController extends Controller
 
     }
 
+    
+
     public function cadastrarProduto(Request $request){
 
-        function formatarComoMoedaAmericana($valor) {
-            // Remover todos os caracteres não numéricos.
-            $valorLimpo = preg_replace('/[^0-9]/', '', $valor);
-    
-            // Converter o valor limpo em float
-            $valorFloat = floatval($valorLimpo) / 100;
-    
-            // Formatá-lo para o padrão americano.
-            return number_format($valorFloat, 2, '.', ',');
-        }
+        
         
         if($request->method() == 'POST'){
 
@@ -52,10 +56,24 @@ class ProdutosController extends Controller
             
             Produto::create($data);
             return redirect()->route('produto.index');
-        }
+        };
         
         return view('pages.produtos.create');
 
+    }
+
+    public function atualizarProduto(Request $request, $id){
+       if($request->method() === "PUT"){
+           $data = $request->all();
+           $data['valor'] = formatarComoMoedaAmericana($request->valor);
+           $registro = Produto::find($id);
+           $registro->update($data);
+           return redirect()->route('produto.index');
+
+       };
+
+         $findProduto = Produto::where('id', '=', $id)->first();
+        return view('pages.produtos.atualiza', compact('findProduto'));
     }
 
     

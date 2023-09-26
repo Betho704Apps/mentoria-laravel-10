@@ -14,21 +14,25 @@ use PhpParser\Node\Stmt\Echo_;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/teste', function () {
+    return view('teste');
+});
 
 Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/teste', function () {
-    return view('teste');
-});
+
 
 Route::prefix('produtos')->group(function () {
     Route::get('/', [ProdutosController::class, 'index'])->name('produto.index');
-    Route::delete('/delete', [ProdutosController::class, 'delete'])->name('produto.delete');
+    //cadastro create
     Route::get('/cadastrarProduto',[ProdutosController::class, 'cadastrarProduto'])->name('cadastrar.produtos');
     Route::post('/cadastrarProduto',[ProdutosController::class, 'cadastrarProduto'])->name('cadastrar.produtos');
+    //atualizar updade
+    Route::get('/atualizarProduto/{id}',[ProdutosController::class, 'atualizarProduto'])->name('atualizar.produtos');
+    Route::put('/atualizarProduto/{id}',[ProdutosController::class, 'atualizarProduto'])->name('atualizar.produtos');
 
-
+    Route::delete('/delete', [ProdutosController::class, 'delete'])->name('produto.delete');
 
 });

@@ -9,7 +9,7 @@
         @csrf
         <div class="mb-3">
             <label  class="form-label">Nome produto</label>
-            <input type="text" class="form-control"  name="nome">
+            <input type="text" class="form-control"  name="nome" value="{{ @old('nome')}}">
         </div>
         <div class="mb-3">
             <label  class="form-label" >Valor</label>
