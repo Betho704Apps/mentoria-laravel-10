@@ -1,5 +1,5 @@
 function deleteRegistroPaginacao(rotaUrl, idDoRegistro){
-   if(confirm('Deseja excluir o produto '+idDoRegistro)){
+   if(confirm('Deseja excluir o Registro '+idDoRegistro)){
         $.ajax({
             url: rotaUrl,
             method: 'DELETE',
@@ -62,11 +62,38 @@ if(document.getElementById('formatReal') || document.getElementById('valorEditar
     });
 }
 
+// $("#cep").blur(function() {
+//     var cep = $(this).val().replace(/\D/g, '');
+//     alert(cep);
+// })
+document.getElementById('cep').addEventListener('input', function() {
+    cep_limpo = this.value.replace(/\D/g,'');
+    if(cep_limpo.length > 8){
+        alert('Cep inválido');
+    }
+    if(cep_limpo.length == 8){
+        $url = "https://viacep.com.br/ws/"+cep_limpo+"/json";
+        fetch($url)
+            .then(function(response){
+                if(response.status == 200) {
+                    return response.json();
+                } else {
+                    throw new Error("Erro na requisição do cep")
+                }
+            })
+            .then(function(data){
+                document.getElementById('endereco').value = data.localidade;
+                document.getElementById('bairro').value = data.bairro;
+                document.getElementById('logradouro').value = data.logradouro;
+
+            })
+            .catch(function(error){
+                alert('Error..');
+            })
 
 
+    }
+});
 
-
-// var valorEdit = document.getElementById('valorEditar');
-// console.log(valorEdit);
 
 

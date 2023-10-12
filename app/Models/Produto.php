@@ -19,7 +19,6 @@ class Produto extends Model
             if($search){
                 $query->where('nome', $search);
                 $query->orWhere('nome', 'LIKE', "%{$search}%");
-                $query->orWhere('valor', '=', "{$search}%");
             }
 
         })->get();

@@ -5,10 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Produto;
 use GuzzleHttp\Psr7\Message;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
+
+
+
 
 function formatarComoMoedaAmericana($valor) {
     // Remover todos os caracteres não numéricos.
     $valorLimpo = preg_replace('/[^0-9]/', '', $valor);
+    
 
     // Converter o valor limpo em float
     $valorFloat = floatval($valorLimpo) / 100;
@@ -35,9 +40,11 @@ class ProdutosController extends Controller
     }
 
     public function delete(Request $request){
+    
         $id = $request->id;
         $buscaRegistro = Produto::find($id);
         $buscaRegistro->delete();
+        Toastr::warning('Cadastro excluido com sucesso','Deletado',["positionClass"=>"toast-top-right","progressBar" => true]);
         return response()->json(['success'=>true]);
 
     }
@@ -55,6 +62,8 @@ class ProdutosController extends Controller
             $data['valor']=$valorValidado;
             
             Produto::create($data);
+            Toastr::success('Cadsatro realizado com Sucesso','Cadastro',["positionClass"=>"toast-top-right","progressBar" => true]);
+            
             return redirect()->route('produto.index');
         };
         
@@ -71,7 +80,7 @@ class ProdutosController extends Controller
            return redirect()->route('produto.index');
 
        };
-
+            
          $findProduto = Produto::where('id', '=', $id)->first();
         return view('pages.produtos.atualiza', compact('findProduto'));
     }

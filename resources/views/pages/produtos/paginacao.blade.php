@@ -15,7 +15,7 @@
         <div class="table-responsive mt-4">
             @if ($findProduto->isEmpty())
             <hr>
-            <p>Não existe daodos</p>
+            <p>Não existe dados</p>
             @else
                 <table class="table table-striped table-sm">
                     <thead>
@@ -45,4 +45,6 @@
         
 
     </div>
+    {!! Toastr::message() !!} 
+
 @endsection
