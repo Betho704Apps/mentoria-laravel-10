@@ -23,9 +23,9 @@
                         <th>Nome</th>
                         <th>e-mail</th>
                         <th>endereço</th>
-                        <th>Logradouro</th>
-                        <th>Cep</th>
+                        <th>Cidade</th>
                         <th>Bairro</th>
+                        <th>Cep</th>
                         <th>Ações</th>
                     </tr>
                     </thead>
@@ -34,12 +34,12 @@
                         <tr>
                             <td>{{ $cliente->id}}-{{ $cliente->nome}}</td>
                             <td>{{ $cliente->email}}</td>
-                            <td>{{ $cliente->endereco}}</td>
                             <td>{{ $cliente->logradouro}}</td>
+                            <td>{{ $cliente->endereco}}</td>
                             <td maxlength="10">{{ $cliente->bairro}}</td>
                             <td>{{ $cliente->cep}}</td>
                             <td>
-                                <a href="{{ route('atualizar.produtos', $cliente->id)}}"  class="btn btn-light btn-sm">Editar</a>
+                                <a href="{{ route('atualizar.cliente', $cliente->id)}}"  class="btn btn-light btn-sm">Editar</a>
                                 <meta name='csrf-token' content=" {{ csrf_token() }}">
                                 <a onclick="deleteRegistroPaginacao('{{ route('cliente.delete')}}', {{$cliente->id}})"  class="btn btn-danger btn-sm">Excluir</a>
                             </td>

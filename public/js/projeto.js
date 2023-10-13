@@ -9,7 +9,7 @@ function deleteRegistroPaginacao(rotaUrl, idDoRegistro){
             },
             beforeSend: function() {
                 $.blockUI({
-                    message: 'Carregando',
+                    message: 'Carregando...',
                     timeout: 2000,
                 });
             },
@@ -25,7 +25,7 @@ function deleteRegistroPaginacao(rotaUrl, idDoRegistro){
             console.log('Enviaou ok');
         }).fail( function(data) {
             $.unblockUI();
-            console.log('falaha no envio');
+            // console.log('falaha no envio');
             alert('Não foi possível buscar os dados')
         });
 
@@ -95,5 +95,14 @@ document.getElementById('cep').addEventListener('input', function() {
     }
 });
 
+var formulario = document.querySelector('form');
+formulario.addEventListener('submit', function(event) {
+    var preloader = document.querySelector('.preloader');
+    preloader.style.display = 'flex';
+})
 
+// window.addEventListener('load', function() {
+//     // Esconde o preloader após o carregamento da página
+   
+// });
 

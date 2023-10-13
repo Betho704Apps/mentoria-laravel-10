@@ -39,9 +39,7 @@ class ClientesController extends Controller
      public function cadastrarCliente(FormRequestClientes $request){
  
          if($request->method() == 'POST'){
- 
              $data = $request->all();
-            //  dd($data);
              Cliente::create($data);
              Toastr::success('Cadsatro realizado com Sucesso','Cadastro',["positionClass"=>"toast-top-right","progressBar" => true]);
              
@@ -55,16 +53,15 @@ class ClientesController extends Controller
      public function atualizarCliente(Request $request, $id){
         if($request->method() === "PUT"){
             $data = $request->all();
-            $data['valor'] = formatarComoMoedaAmericana($request->valor);
             $registro = Cliente::find($id);
             $registro->update($data);
             Toastr::success('Dados atualizadso com sucesso');
-            return redirect()->route('produto.index');
+            return redirect()->route('clientes.index');
  
         };
              
-          $findProduto = Cliente::where('id', '=', $id)->first();
-         return view('pages.clientes.atualiza', compact('findProduto'));
+        $findCliente = Cliente::where('id', '=', $id)->first();
+        return view('pages.clientes.atualiza', compact('findCliente'));
      }
  
 }

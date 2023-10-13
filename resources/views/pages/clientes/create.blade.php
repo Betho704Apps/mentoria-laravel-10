@@ -5,6 +5,11 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Cadastrar novo Cliente</h1>
     </div>
+
+    <div class="preloader">
+        <div class="preloader-spinner"></div>
+    </div>
+    
     <form method="POST" accept="{{route('cadastrar.cliente')}}">
         @csrf
         {{-- <meta name='csrf-token' content=" {{ csrf_token() }}"> --}}
