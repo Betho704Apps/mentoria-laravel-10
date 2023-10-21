@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\ProdutosController;
+use App\Http\Controllers\VendaController;
 use Illuminate\Support\Facades\Route;
 use PhpParser\Node\Stmt\Echo_;
 use Brian2694\Toastr\Facades\Toastr;
@@ -38,7 +39,6 @@ Route::prefix('clientes')->group(function () {
     Route::delete('/delete', [ClientesController::class, 'delete'])->name('cliente.delete');
 });
 
-
 Route::prefix('produtos')->group(function () {
     Route::get('/', [ProdutosController::class, 'index'])->name('produto.index');
     //cadastro create
@@ -49,4 +49,12 @@ Route::prefix('produtos')->group(function () {
     Route::put('/atualizarProduto/{id}',[ProdutosController::class, 'atualizarProduto'])->name('atualizar.produtos');
     //Deleta produto
     Route::delete('/delete', [ProdutosController::class, 'delete'])->name('produto.delete');
+});
+
+Route::prefix('vendas')->group(function () {
+    Route::get('/', [VendaController::class, 'index'])->name('vendas.index');
+    //cadastro create
+    Route::get('/cadastrarVenda',[VendaController::class, 'cadastrarVenda'])->name('cadastrar.venda');
+    Route::post('/cadastrarVenda',[VendaController::class, 'cadastrarVenda'])->name('cadastrar.venda');
+
 });

@@ -22,3 +22,203 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+
+body, html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;  /* Previne a rolagem */
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #555;
+    text-decoration: none;
+    cursor:pointer;
+}
+
+.pre-load-centralized-frames {
+    padding: 10px;
+    width: 100%; /* Largura ajustada da div */
+    height: 100%; /* Altura ajustada da div */
+    background-color: #fdfdfd00; /* Cor de fundo da div */
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Para centralizar os quadros verticalmente */
+    /* overflow: hidden; Garante que os quadros fiquem dentro da div */
+    overflow: hidden;
+    animation: swayMovement 2s 5s infinite alternate;  /* Duração de 1s, repetição infinita e movimento de ida e volta */
+
+
+}
+
+/* Quadro 1 */
+.quadro-1 {
+    width: 187px;
+    height: 189px;
+    background-color: transparent;
+    border: 11px solid #314970;
+    border-radius: 40px;
+    margin: 10px;
+    position: relative; /* Ponto de referência para o posicionamento do .quadro-2 */
+    top: -20%;
+    animation: transformToCircle 2s 2s forwards,moveCircle1 2s 2s forwards, spin 1s 4s infinite;
+}
+
+.quadro-2 {
+    width: 228px;
+    height: 213px;
+    background-color: transparent;
+    border:11px solid #314970;
+    border-radius: 40px;
+    margin: 10px;
+    position: absolute; /* Posiciona o .quadro-2 em relação ao .quadro-1 */
+    top: 41%;
+    right: 45%;
+    animation: transformToCircle 2s 2s forwards, moveCircle2 2s 2s forwards, spin 1s 4s infinite;
+}
+
+
+/* Quadro 3 */
+.quadro-3 {
+    width: 160px;
+    height: 158px;
+    background-color: transparent; /* Fundo transparente */
+    border: 11px solid #9FC556;
+    border-radius: 40px;
+    margin: 10px; /* Espaçamento entre os quadros */
+    position: absolute;
+    top: 29%;
+    left: 38%;
+    animation: formCarBodyTop 2s 2s forwards;
+}
+
+/* Quadro 4 */
+.quadro-4 {
+    width: 261px;
+    height: 247px;
+    background-color: transparent; /* Fundo transparente */
+    border: 11px solid #9FC556;
+    border-radius: 40px;
+    margin: 10px; /* Espaçamento entre os quadros */
+    position: absolute;
+    top: 29%;
+    left: 47%;
+
+    animation: formCarBody 2s 2s forwards;
+}
+
+.quadro-5 {
+    /* display: hide; */
+    width: 50px;
+    height: 50px;
+    background-color: #314970;
+}
+
+
+@keyframes transformToCircle {
+    0% {
+        border-radius: 40px;        
+        border:11px solid #314970;
+
+
+    }
+    100% {
+        border-radius: 50%; /* Faz o elemento se tornar redondo */
+        border:90px solid #314970;
+        z-index: 9999
+
+    }
+}
+
+@keyframes moveCircle1 {
+    0% {
+        top: -20%;
+        left: 0%;
+        width: 187px;
+        height: 189px;
+    }
+    100% {
+        top: 9.5%;
+        left: 13%;
+        width: 228px;
+        height: 213px;
+        z-index: 9998
+    }
+}
+
+@keyframes moveCircle2 {
+    0% {
+        top: 41%;
+        right: 45%;
+    }
+    100% {
+        top: 47%;
+        right: 50%;
+    }
+}
+
+@keyframes formCarBody {
+    0% {
+        width: 261px;
+        height: 247px;
+        background-color: transparent; /* Fundo transparente */
+        top: 29%;
+        left: 47%;
+    }
+    100% {
+        width: 631px;
+        height: 199px;
+        top: 38%;
+        left: 36%;
+        background-color: #9FC556;
+    }
+}
+
+@keyframes formCarBodyTop {
+    0% {
+        width: 160px;
+        height: 158px;
+        background-color: transparent; /* Fundo transparente */
+        top: 29%;
+        left: 38%;
+    }
+    100% {
+        width: 560px;
+        height: 160px;
+        background-color: #9FC556;
+        top: 28%;
+        left: 37%;
+        border-radius: 50%;
+        z-index: 9999;
+        clip-path: polygon(25% 0, 75% 0, 100% 100%, 0 100%);
+    }
+}
+
+@keyframes swayMovement {
+    0% {
+        transform: translateX(-5px) translateY(-5px);
+    }
+    50% {
+        transform: translateX(5px) translateY(5px);
+    }
+    100% {
+        transform: translateX(-5px) translateY(-5px);
+    }
+}
+
+
+
+
+
+
+
+
