@@ -33,7 +33,7 @@
                             <td>{{ $venda->produto->nome}}</td>
                             <td>{{ $venda->cliente->nome}}</td>
                             <td>
-                                <a href="">Enviar e-mail</a>
+                                <a href="{{ route('enviaComporvantePorEmail.venda', $venda->id) }}">Enviar e-mail</a>
                             </td>
                             <td>
                                

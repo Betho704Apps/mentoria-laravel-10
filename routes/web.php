@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProdutosController;
 use App\Http\Controllers\VendaController;
 use Illuminate\Support\Facades\Route;
@@ -18,13 +19,15 @@ use Brian2694\Toastr\Toastr as ToastrToastr;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/teste', function () {
-    Toastr::info("message");
-    return view('teste');
-});
+
 
 Route::get('/', function () {
     return view('index');
+});
+
+Route::prefix('dashboard')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+   
 });
 
 Route::prefix('clientes')->group(function () {
@@ -56,5 +59,12 @@ Route::prefix('vendas')->group(function () {
     //cadastro create
     Route::get('/cadastrarVenda',[VendaController::class, 'cadastrarVenda'])->name('cadastrar.venda');
     Route::post('/cadastrarVenda',[VendaController::class, 'cadastrarVenda'])->name('cadastrar.venda');
+    //Email
+    Route::get('/enviaComprovantePorEmail/{id}',[VendaController::class, 'enviaComprovantePorEmail'])->name('enviaComporvantePorEmail.venda');
 
+});
+
+Route::get('/teste', function () {
+    Toastr::info("message");
+    return view('teste');
 });
