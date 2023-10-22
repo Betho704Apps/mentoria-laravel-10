@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProdutosController;
+use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\VendaController;
 use Illuminate\Support\Facades\Route;
 use PhpParser\Node\Stmt\Echo_;
@@ -28,6 +29,18 @@ Route::get('/', function () {
 Route::prefix('dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
    
+});
+
+Route::prefix('usuarios')->group(function () {
+    Route::get('/', [UsuariosController::class, 'index'])->name('usuarios.index');
+    //cadastro create
+    Route::get('/cadastrarUsuario',[UsuariosController::class, 'cadastrarUsuario'])->name('cadastrar.usuario');
+    Route::post('/cadastrarUsuario',[UsuariosController::class, 'cadastrarUsuario'])->name('cadastrar.usuario');
+    //atualizar updade
+    Route::get('/atualizarUsuario/{id}',[UsuariosController::class, 'atualizarUsuario'])->name('atualizar.usuario');
+    Route::put('/atualizarUsuario/{id}',[UsuariosController::class, 'atualizarUsuario'])->name('atualizar.usuario');
+    //Deleta produto
+    Route::delete('/delete', [UsuariosController::class, 'delete'])->name('usuario.delete');
 });
 
 Route::prefix('clientes')->group(function () {

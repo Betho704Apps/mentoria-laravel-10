@@ -35,14 +35,14 @@
           <p class="card-text">Total de vendas realizadas pelo sistama de modo geral</p>
           <a href="#" class="btn btn-primary">{{ $TotalVendasCadastrados }}</a>
         </div>
-      </div>
+
     </div>
     <div class="col-sm-6">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Usuários cadastados</h5>
           <p class="card-text">Total de usuários que tem acesso ao sistema</p>
-          <a href="#" class="btn btn-primary">0</a>
+          <a href="#" class="btn btn-primary">{{ $TotalUsuariosCadastrados }}</a>
         </div>
       </div>
     </div>

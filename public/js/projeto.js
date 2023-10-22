@@ -101,8 +101,21 @@ formulario.addEventListener('submit', function(event) {
     preloader.style.display = 'flex';
 })
 
-// window.addEventListener('load', function() {
-//     // Esconde o preloader após o carregamento da página
-   
-// });
+function mostraSenha(elemento){
+    var exibe = document.getElementById('password_user');
+    var tipo = exibe.type;
 
+    if(tipo == 'text'){
+        exibe.type = 'password';
+        elemento.innerHTML= 'Exibir senha';
+
+        
+        // exibe.type = "yyyy";
+    } else {
+        exibe.type = 'text';
+        // exibe.innerHTML = "xxxxx";
+        elemento.innerHTML= 'Ocultar senha';
+
+    }
+
+}
