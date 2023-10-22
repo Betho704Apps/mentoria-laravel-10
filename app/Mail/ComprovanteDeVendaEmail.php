@@ -9,16 +9,15 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class CompovanteDeVendaEmail extends Mailable
+class ComprovanteDeVendaEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
-    public function __construct()
+    public $emailData;
+
+    public function __construct($emailData)
     {
-        //
+        $this->emailData = $emailData;
     }
 
     /**
@@ -37,7 +36,7 @@ class CompovanteDeVendaEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'email.comprovante_venda',
         );
     }
 
